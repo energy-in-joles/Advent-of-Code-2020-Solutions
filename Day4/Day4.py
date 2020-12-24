@@ -13,24 +13,24 @@ def main():
 
   # part 1: validate that all fields are present except for cid
   for pass_p in passes:
-    byr = re.findall(r"(?:byr:)([^\n\s]*)", pass_p)  # find text after "[field]:" and before space or newline
-    iyr = re.findall(r"(?:iyr:)([^\n\s]*)", pass_p)
-    eyr = re.findall(r"(?:eyr:)([^\n\s]*)", pass_p)
-    hgt = re.findall(r"(?:hgt:)([^\n\s]*)", pass_p)
-    hcl = re.findall(r"(?:hcl:)([^\n\s]*)", pass_p)
-    ecl = re.findall(r"(?:ecl:)([^\n\s]*)", pass_p)
-    pid = re.findall(r"(?:pid:)([^\n\s]*)", pass_p)
+    byr = re.search(r"(?<=byr:)([^\n\s]*)", pass_p)  # find text after "[field]:" and before space or newline
+    iyr = re.search(r"(?<=iyr:)([^\n\s]*)", pass_p)
+    eyr = re.search(r"(?<=eyr:)([^\n\s]*)", pass_p)
+    hgt = re.search(r"(?<=hgt:)([^\n\s]*)", pass_p)
+    hcl = re.search(r"(?<=hcl:)([^\n\s]*)", pass_p)
+    ecl = re.search(r"(?<=ecl:)([^\n\s]*)", pass_p)
+    pid = re.search(r"(?<=pid:)([^\n\s]*)", pass_p)
     if (byr and iyr and eyr and hgt and hcl and ecl and pid):  # if not empty. ie. if field exists
       counter_1 += 1
 
       # Part 2: individual checks for each field
-      if (year_validate(4, 1920, 2002, byr[0]) &  # byr check
-          year_validate(4, 2010, 2020, iyr[0]) &  # iyr check
-          year_validate(4, 2020, 2030, eyr[0]) &  # eyr check
-          hgt_check(150, 193, 59, 76, hgt[0]) &
-          hcl_check(hcl[0]) &
-          ecl_check(ecl[0]) &
-          pid_check(9, pid[0])):
+      if (year_validate(4, 1920, 2002, byr.group(0)) &  # byr check
+          year_validate(4, 2010, 2020, iyr.group(0)) &  # iyr check
+          year_validate(4, 2020, 2030, eyr.group(0)) &  # eyr check
+          hgt_check(150, 193, 59, 76, hgt.group(0)) &
+          hcl_check(hcl.group(0)) &
+          ecl_check(ecl.group(0)) &
+          pid_check(9, pid.group(0))):
         counter_2 += 1
 
 
