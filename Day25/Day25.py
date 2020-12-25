@@ -4,7 +4,7 @@
 
 # But decided to write a code for today:
 # Inspired by u/AidGli on r/adventofcode (https://github.com/AidanGlickman/Advent-2020/blob/master/day25/solution.py)
-# because I did not know how to deal with large exponents :(
+# because I did not know how to deal with the large exponents :(
 
 def main():
   with open('pub_keys.txt', 'r') as File:
