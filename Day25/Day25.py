@@ -28,7 +28,7 @@ def find_loop(base,pub_key, mod_num):
 
 def find_key(base,power,mod_num):
   key = base
-  for i in range(power - 1): # similar as find_loop, multiply base to itself and mod loop times. ie base ** key % mod_num
+  for _ in range(power - 1): # similar as find_loop, multiply base to itself and mod loop times. ie base ** key % mod_num
     key *= base
     key %= mod_num # mod every cycle to work with smaller vals compared to mod at end
   return key
